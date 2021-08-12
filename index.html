@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'>
-<title>Go Long Day 0</title>
+<title>Day0</title>
 <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 <link rel='stylesheet' href='https://openlayers.org/en/v3.10.1/css/ol.css' type='text/css'>
 <script src='https://openlayers.org/en/v5.3.0/build/ol.js'></script>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
 <style>
 html, body {
 height: 100%;
@@ -28,7 +26,6 @@ margin-top: 3%;
 Font -family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 border-collapse: collapse;
 font-size: 12px;
-margin-top: 100px;
 }
 #Task td, #Task th {
 border: 1px solid #ddd;
@@ -49,19 +46,10 @@ text-shadow: 1px 1px #0066ff;
 }
 .ALL {margin: auto;}
 .map{height: 700px;}
-.content {display: none;}
-.collapsible{outline: none;}
 </style>
 </head>
 <body>
-  <!-- Navbar (sit on top) -->
-  <div class='w3-top'>
-    <div class='w3-bar w3-white w3-wide w3-padding w3-card'>
-      <a href='#home' class='w3-bar-item w3-button'><b>Go Long in Texas</b> Day 0</a>
-            <!-- Float links to the right. Hide them on small screens -->
 
-    </div>
-  </div>
 <div class='ALL'>
 <div class='container-fluid'>
 <div class='row-fluid'>
@@ -70,7 +58,7 @@ text-shadow: 1px 1px #0066ff;
 <div id='legende'>
 <div class='udiv_legende' id='legende_1'>
 <div id='Task'>
-
+<h2 class='collapsible'>Day0</h2>
 </div>
 <br>
 <br>
@@ -87,15 +75,15 @@ text-shadow: 1px 1px #0066ff;
 </div>
 </div></div>
 <script>
-var BIGSPR = new ol.geom.Circle(ol.proj.transform([-101.5249, 32.2176], 'EPSG:4326', 'EPSG:3857'), 400*(2-Math.cos(32.2176*Math.PI/180)));
-var WEST10 = new ol.geom.Circle(ol.proj.transform([-101.6316667, 32.2137334], 'EPSG:4326', 'EPSG:3857'), 11000*(2-Math.cos(32.2137334*Math.PI/180)));
-var LAMESA = new ol.geom.Circle(ol.proj.transform([-101.9192, 32.7592], 'EPSG:4326', 'EPSG:3857'), 3000*(2-Math.cos(32.7592*Math.PI/180)));
-var TBAR = new ol.geom.Circle(ol.proj.transform([-101.8234, 33.1743], 'EPSG:4326', 'EPSG:3857'), 400*(2-Math.cos(33.1743*Math.PI/180)));
+var Cuhg = new ol.geom.Circle(ol.proj.transform([-96.1544055599185, 29.2541653935156], 'EPSG:4326', 'EPSG:3857'), 5000);
+var T1087 = new ol.geom.Circle(ol.proj.transform([-96.1212508746672, 29.3261169695051], 'EPSG:4326', 'EPSG:3857'), 2000);
+var T9098 = new ol.geom.Circle(ol.proj.transform([-96.0714356819226, 29.5311153138883], 'EPSG:4326', 'EPSG:3857'), 2000);
+var Glo36 = new ol.geom.Circle(ol.proj.transform([-96.059803467324, 29.7285788359315], 'EPSG:4326', 'EPSG:3857'), 2000);
 var points = [
-[-101.5249, 32.2176],
-[-101.6316667, 32.2137334],
-[-101.9192, 32.7592],
-[-101.8234, 33.1743],
+[-96.1544055599185, 29.2541653935156],
+[-96.1212508746672, 29.3261169695051],
+[-96.0714356819226, 29.5311153138883],
+[-96.059803467324, 29.7285788359315],
 ];
 for (var i = 0; i < points.length; i++) {
     points[i] = ol.proj.transform(points[i], 'EPSG:4326', 'EPSG:3857');
@@ -112,15 +100,15 @@ var vectorLineLayer = new ol.layer.Vector({
     stroke: new ol.style.Stroke({ color: '#00FF00', width: 2 })
     })
     });
-var BIGSPRFeature = new ol.Feature({geometry: BIGSPR, label: 'BIGSPR'});
-var WEST10Feature = new ol.Feature({geometry: WEST10, label: 'WEST10'});
-var LAMESAFeature = new ol.Feature({geometry: LAMESA, label: 'LAMESA'});
-var TBARFeature = new ol.Feature({geometry: TBAR, label: 'TBAR'});
+var CuhgFeature = new ol.Feature({geometry: Cuhg, label: 'CUHG'});
+var T1087Feature = new ol.Feature({geometry: T1087, label: 'T10259'});
+var T9098Feature = new ol.Feature({geometry: T9098, label: 'T9060'});
+var Glo36Feature = new ol.Feature({geometry: Glo36, label: 'Gloster Aerodrom-R'});
 var vectorSource = new ol.source.Vector({ projection: 'EPSG:4326', features: [
-BIGSPRFeature,
-WEST10Feature,
-LAMESAFeature,
-TBARFeature,
+CuhgFeature,
+T1087Feature,
+T9098Feature,
+Glo36Feature,
 ]});
 var style = new ol.style.Style({
      fill: new ol.style.Fill({
@@ -160,7 +148,22 @@ style.getText().setText(feature.get('label'));
 return [style];
 }
 });
-
+/* **********************************************
+// Points
+function pointStyleFunction(feature, resolution) {
+return new ol.style.Style({
+text: createTextStyle(feature, resolution, myDom.points)
+});
+}
+var vectorPoints = new ol.layer.Vector({
+source: vectorSource,
+style: new ol.style.Style({
+new ol.style.Text({
+text: feature.get('label'),
+placement: })
+        });
+});
+/* ********************************************** */
 var colors = {
 'Bob Fisher': 'rgba(231,151,223,1)',
 'Carl Boddie': 'rgba(76,162,226,1)',
@@ -226,7 +229,7 @@ var igcUrls = [
 'Majo_Day0.igc',
 'Makbule_Day0.igc',
 'Matt_Day0.igc',
-'Mick_Day0.igc',
+'Mick_Day0.IGC',
 'Mitch_Day0.igc',
 'Nate_Day0.igc',
 'Read_Day0.igc',
@@ -239,13 +242,6 @@ var igcUrls = [
 'Tavo_Day0.igc',
 'Tyson_Day0.igc',
 ];
-var vectorLineLayer = new ol.layer.Vector({
-source: vectorLine,
-style: new ol.style.Style({
-fill: new ol.style.Fill({ color: '#00FF00', weight: 4 }),
-stroke: new ol.style.Stroke({ color: '#ff1aff', width: 5 })
-})
-});
 function get(url, callback) {
 var client = new XMLHttpRequest();
 client.open('GET', url);
@@ -354,11 +350,11 @@ map.on('postcompose', function(evt) {
 var vectorContext = evt.vectorContext;
 if (point !== null) {
 vectorContext.setImageStyle(imageStyle);
-vectorContext.drawGeometry(point);
+vectorContext.drawPointGeometry(point);
 }
 if (line !== null) {
 vectorContext.setFillStrokeStyle(null, strokeStyle);
-vectorContext.drawGeometry(line);
+vectorContext.drawLineStringGeometry(line);
 }
 });
 var featureOverlay = new ol.layer.Vector({
