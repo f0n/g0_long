@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'>
 <title>Day0</title>
 <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
@@ -28,7 +27,6 @@ margin-top: 3%;
 Font -family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 border-collapse: collapse;
 font-size: 12px;
-margin-top: 100px;
 }
 #Task td, #Task th {
 border: 1px solid #ddd;
@@ -49,29 +47,25 @@ text-shadow: 1px 1px #0066ff;
 }
 .ALL {margin: auto;}
 .map{height: 700px;}
-.content {display: none;}
-.collapsible{outline: none;}
 </style>
 </head>
 <body>
-  <h2>Go Long Day0</h2>
-  <div class='ALL'>
-  <div class='container-fluid'>
-  <div class='row-fluid'>
-  <div class='span12'>
-  <div id='map' class='map'>
-  <div id='legende'>
-  </div>
-  </div>
-  <input id='time' type='range' value='0' steps='1' />
-  <div class='span4 offset4 pull-left'>
-  <div id='info' class='alert alert-success'>
-  &nbsp;
-  </div>
-  </div>
-  </div>
-  </div>
-  </div></div>
+<h2>Go Long Day0
+<div class='ALL'>
+<div class='container-fluid'>
+<div class='row-fluid'>
+<div class='span12'>
+<div id='map' class='map'>
+</div>
+<input id='time' type='range' value='0' steps='1' />
+<div class='span4 offset4 pull-left'>
+<div id='info' class='alert alert-success'>
+&nbsp;
+</div>
+</div>
+</div>
+</div>
+</div></div>
 <script>
 var Cuhg = new ol.geom.Circle(ol.proj.transform([-96.1544055599185, 29.2541653935156], 'EPSG:4326', 'EPSG:3857'), 5000);
 var T1087 = new ol.geom.Circle(ol.proj.transform([-96.1212508746672, 29.3261169695051], 'EPSG:4326', 'EPSG:3857'), 2000);
@@ -240,13 +234,6 @@ var igcUrls = [
 'Tavo_Day0.igc',
 'Tyson_Day0.igc',
 ];
-var vectorLineLayer = new ol.layer.Vector({
-source: vectorLine,
-style: new ol.style.Style({
-fill: new ol.style.Fill({ color: '#00FF00', weight: 4 }),
-stroke: new ol.style.Stroke({ color: '#ff1aff', width: 5 })
-})
-});
 function get(url, callback) {
 var client = new XMLHttpRequest();
 client.open('GET', url);
