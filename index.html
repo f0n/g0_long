@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'>
-<title>Big Spring Task 1 Sport</title>
+<title>Day0</title>
 <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 <link rel='stylesheet' href='https://openlayers.org/en/v3.10.1/css/ol.css' type='text/css'>
 <script src='https://openlayers.org/en/v5.3.0/build/ol.js'></script>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet' href='../../css/w3.css'>
-<link rel='stylesheet' href='../../css/style.css'>
+<link rel='stylesheet' type='text/css' href='/css/cuhg.css'>
 <style>
 html, body {
 height: 100%;
@@ -30,7 +27,6 @@ margin-top: 3%;
 Font -family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 border-collapse: collapse;
 font-size: 12px;
-margin-top: 100px;
 }
 #Task td, #Task th {
 border: 1px solid #ddd;
@@ -51,26 +47,17 @@ text-shadow: 1px 1px #0066ff;
 }
 .ALL {margin: auto;}
 .map{height: 700px;}
-.content {display: none;}
-.collapsible{outline: none;}
 </style>
 </head>
-
 <body>
-  <!-- Navbar (sit on top) -->
-  <div class='w3-top'>
-    <div class='w3-bar w3-white w3-wide w3-padding w3-card'>
-      <a href='#home' class='w3-bar-item w3-button'><b>2019</b> Big Spring Task 1 Sport</a>
-            <!-- Float links to the right. Hide them on small screens -->
-      <div class='w3-right w3-hide-small'>
-        <a href='../../index.html#tasks' class='w3-bar-item w3-button'>Tasks</a>
-        <a href='../../index.html#results' class='w3-bar-item w3-button'>Results</a>
-        <a href='../../index.html#photos' class='w3-bar-item w3-button'>Photos</a>
-        <a href='../../index.html#videos' class='w3-bar-item w3-button'>Videos</a>
-        <a href='../../index.html#links' class='w3-bar-item w3-button'>Links</a>
-      </div>
-    </div>
-  </div>
+<nav>
+                <ul>
+                    <li><a href='/'>Home</a></li>
+                    <li><a href='/about'>About</a></li>
+                    <li><a href='/blog'>Blog</a></li>
+                <li><a href='/xcbohl'>XC Bohl 2018</a></li>
+                </ul>
+</nav>
 <div class='ALL'>
 <div class='container-fluid'>
 <div class='row-fluid'>
@@ -78,8 +65,70 @@ text-shadow: 1px 1px #0066ff;
 <div id='map' class='map'>
 <div id='legende'>
 <div class='udiv_legende' id='legende_1'>
+<img id='cuhg_logo' src='https://www.cuhanggliding.com/wp-content/uploads/2017/11/shirt-design_21-1024x947.png'>
 <div id='Task'>
-<h2 class='collapsible'>Task 1 Overview</h2>
+<h2 class='collapsible'>Day0</h2>
+<table>
+<thead>
+<tr>
+<th  >No</th>
+<th  >Waypoint</th>
+<th  >Leg Dist (km)</th>
+<th  >Radius (m)</th>
+<th  >Open</th>
+<th  >Close</th>
+<th  >Coordinates (Lat, Lon)</th>
+<th  >Heading</th>
+<th  >Altitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CUHG</td>
+<td>0.00</td>
+<td>5000</td>
+<td>12:00</td>
+<td>17:00</td>
+<td>29.25417, -96.15441</td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>T10259</td>
+<td>8.62</td>
+<td>2000</td>
+<td>12:00</td>
+<td>17:00</td>
+<td>29.32612, -96.12125</td>
+<td>22</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>T9060</td>
+<td>23.28</td>
+<td>2000</td>
+<td>12:00</td>
+<td>17:00</td>
+<td>29.53112, -96.07144</td>
+<td>12</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Gloster Aerodrom-R</td>
+<td>21.97</td>
+<td>2000</td>
+<td>12:00</td>
+<td>17:00</td>
+<td>29.72858, -96.05980</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 </div>
 <br>
 <br>
@@ -96,15 +145,15 @@ text-shadow: 1px 1px #0066ff;
 </div>
 </div></div>
 <script>
-var BIGSPR = new ol.geom.Circle(ol.proj.transform([-101.5249, 32.2176], 'EPSG:4326', 'EPSG:3857'), 400*(2-Math.cos(32.2176*Math.PI/180)));
-var WEST10 = new ol.geom.Circle(ol.proj.transform([-101.6316667, 32.2137334], 'EPSG:4326', 'EPSG:3857'), 11000*(2-Math.cos(32.2137334*Math.PI/180)));
-var LAMESA = new ol.geom.Circle(ol.proj.transform([-101.9192, 32.7592], 'EPSG:4326', 'EPSG:3857'), 3000*(2-Math.cos(32.7592*Math.PI/180)));
-var TBAR = new ol.geom.Circle(ol.proj.transform([-101.8234, 33.1743], 'EPSG:4326', 'EPSG:3857'), 400*(2-Math.cos(33.1743*Math.PI/180)));
+var Cuhg = new ol.geom.Circle(ol.proj.transform([-96.1544055599185, 29.2541653935156], 'EPSG:4326', 'EPSG:3857'), 5000);
+var T1087 = new ol.geom.Circle(ol.proj.transform([-96.1212508746672, 29.3261169695051], 'EPSG:4326', 'EPSG:3857'), 2000);
+var T9098 = new ol.geom.Circle(ol.proj.transform([-96.0714356819226, 29.5311153138883], 'EPSG:4326', 'EPSG:3857'), 2000);
+var Glo36 = new ol.geom.Circle(ol.proj.transform([-96.059803467324, 29.7285788359315], 'EPSG:4326', 'EPSG:3857'), 2000);
 var points = [
-[-101.5249, 32.2176],
-[-101.6316667, 32.2137334],
-[-101.9192, 32.7592],
-[-101.8234, 33.1743],
+[-96.1544055599185, 29.2541653935156],
+[-96.1212508746672, 29.3261169695051],
+[-96.0714356819226, 29.5311153138883],
+[-96.059803467324, 29.7285788359315],
 ];
 for (var i = 0; i < points.length; i++) {
     points[i] = ol.proj.transform(points[i], 'EPSG:4326', 'EPSG:3857');
@@ -121,15 +170,15 @@ var vectorLineLayer = new ol.layer.Vector({
     stroke: new ol.style.Stroke({ color: '#00FF00', width: 2 })
     })
     });
-var BIGSPRFeature = new ol.Feature({geometry: BIGSPR, label: 'BIGSPR'});
-var WEST10Feature = new ol.Feature({geometry: WEST10, label: 'WEST10'});
-var LAMESAFeature = new ol.Feature({geometry: LAMESA, label: 'LAMESA'});
-var TBARFeature = new ol.Feature({geometry: TBAR, label: 'TBAR'});
+var CuhgFeature = new ol.Feature({geometry: Cuhg, label: 'CUHG'});
+var T1087Feature = new ol.Feature({geometry: T1087, label: 'T10259'});
+var T9098Feature = new ol.Feature({geometry: T9098, label: 'T9060'});
+var Glo36Feature = new ol.Feature({geometry: Glo36, label: 'Gloster Aerodrom-R'});
 var vectorSource = new ol.source.Vector({ projection: 'EPSG:4326', features: [
-BIGSPRFeature,
-WEST10Feature,
-LAMESAFeature,
-TBARFeature,
+CuhgFeature,
+T1087Feature,
+T9098Feature,
+Glo36Feature,
 ]});
 var style = new ol.style.Style({
      fill: new ol.style.Fill({
@@ -169,13 +218,52 @@ style.getText().setText(feature.get('label'));
 return [style];
 }
 });
-
+/* **********************************************
+// Points
+function pointStyleFunction(feature, resolution) {
+return new ol.style.Style({
+text: createTextStyle(feature, resolution, myDom.points)
+});
+}
+var vectorPoints = new ol.layer.Vector({
+source: vectorSource,
+style: new ol.style.Style({
+new ol.style.Text({
+text: feature.get('label'),
+placement: })
+        });
+});
+/* ********************************************** */
 var colors = {
-'David Aldrich': 'rgba(0, 0, 255, 0.7)',
-'': 'rgba(0, 215, 255, 0.7)',
-'': 'rgba(153, 153, 0, 0.95)',
-'': 'rgba(255, 0, 0, 0.7)',
-'': 'rgba(153, 51, 255, 0.7)'
+'Bob Fisher': 'rgba(231,151,223,1)',
+'Carl Boddie': 'rgba(76,162,226,1)',
+'Charles Cozean': 'rgba(69,68,216,1)',
+'Cory Barnwell': 'rgba(207,205,207,1)',
+'Doug Hale': 'rgba(246,208,1,1)',
+'Eduardo Fonseca': 'rgba(227,138,155,1)',
+'German Boliviar': 'rgba(171,50,177,1)',
+'Glen Volk': 'rgba(58,253,10,1)',
+'Greg Chastain': 'rgba(145,118,96,1)',
+'James Race': 'rgba(80,196,2,1)',
+'Jim Yocum': 'rgba(114,108,119,1)',
+'Jonathan Irlbec': 'rgba(92,57,15,1)',
+'Ken Millard': 'rgba(233,13,20,1)',
+'Larry Bunner': 'rgba(220,161,200,1)',
+'Majo Majors': 'rgba(137,11,141,1)',
+'Makbule Baldik': 'rgba(197,7,179,1)',
+'Matt McCleskey': 'rgba(59,13,2,1)',
+'Mick Howard': 'rgba(213,38,225,1)',
+'Mitch Sorby': 'rgba(57,30,83,1)',
+'Nate Wreford': 'rgba(37,153,229,1)',
+'Read Bixby': 'rgba(182,254,23,1)',
+'Rich Reinauer': 'rgba(109,167,35,1)',
+'Richard Milla': 'rgba(181,133,198,1)',
+'Robin Hamilton': 'rgba(139,126,105,1)',
+'Sara Weaver': 'rgba(4,200,33,1)',
+'Soham Mehta': 'rgba(240,76,129,1)',
+'Sujata Sen': 'rgba(253,85,145,1)',
+'Tavo Gutierrez': 'rgba(215,35,200,1)',
+'Tyson Taylor': 'rgba(80,214,188,1)',
 };
 var styleCache = {};
 var styleFunction = function(feature, resolution) {
@@ -194,18 +282,36 @@ return styleArray;
 };
 var vectorSource = new ol.source.Vector();
 var igcUrls = [
-'Mick_Day0.IGC',
-'',
-'',
-''
+'Bob_Day0.igc',
+'Carl_Day0.igc',
+'Charles_Day0.igc',
+'Cory_Day0.igc',
+'Doug_Day0.igc',
+'Eduardo_Day0.igc',
+'German_Day0.igc',
+'Glen_Day0.igc',
+'Greg_Day0.igc',
+'James_Day0.igc',
+'Jim_Day0.igc',
+'Jonathan_Day0.igc',
+'Ken_Day0.igc',
+'Larry_Day0.igc',
+'Majo_Day0.igc',
+'Makbule_Day0.igc',
+'Matt_Day0.igc',
+'Mick_Day0.igc',
+'Mitch_Day0.igc',
+'Nate_Day0.igc',
+'Read_Day0.igc',
+'Rich_Day0.igc',
+'Richard_Day0.igc',
+'Robin_Day0.igc',
+'Sara_Day0.igc',
+'Soham_Day0.igc',
+'Sujata_Day0.igc',
+'Tavo_Day0.igc',
+'Tyson_Day0.igc',
 ];
-var vectorLineLayer = new ol.layer.Vector({
-source: vectorLine,
-style: new ol.style.Style({
-fill: new ol.style.Fill({ color: '#00FF00', weight: 4 }),
-stroke: new ol.style.Stroke({ color: '#ff1aff', width: 5 })
-})
-});
 function get(url, callback) {
 var client = new XMLHttpRequest();
 client.open('GET', url);
@@ -233,7 +339,7 @@ time.start = Math.min(time.start, geometry.getFirstCoordinate()[2]);
 time.stop = Math.max(time.stop, geometry.getLastCoordinate()[2]);
 time.duration = time.stop - time.start;
 });
-var wharton = [-101.724791675, 32.59120835]; // caution partner, read on...
+var wharton = [-96.1017238959581, 29.4599941282101]; // caution partner, read on...
 // since we are using OSM, we have to transform the coordinates...
 var whartonMercator = ol.proj.fromLonLat(wharton);
 var map = new ol.Map({
@@ -314,11 +420,11 @@ map.on('postcompose', function(evt) {
 var vectorContext = evt.vectorContext;
 if (point !== null) {
 vectorContext.setImageStyle(imageStyle);
-vectorContext.drawGeometry(point);
+vectorContext.drawPointGeometry(point);
 }
 if (line !== null) {
 vectorContext.setFillStrokeStyle(null, strokeStyle);
-vectorContext.drawGeometry(line);
+vectorContext.drawLineStringGeometry(line);
 }
 });
 var featureOverlay = new ol.layer.Vector({
