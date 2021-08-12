@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset='UTF-8'>
 <title>Day0</title>
 <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
@@ -27,6 +28,7 @@ margin-top: 3%;
 Font -family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 border-collapse: collapse;
 font-size: 12px;
+margin-top: 100px;
 }
 #Task td, #Task th {
 border: 1px solid #ddd;
@@ -47,25 +49,29 @@ text-shadow: 1px 1px #0066ff;
 }
 .ALL {margin: auto;}
 .map{height: 700px;}
+.content {display: none;}
+.collapsible{outline: none;}
 </style>
 </head>
 <body>
-<h2>Go Long Day0
-<div class='ALL'>
-<div class='container-fluid'>
-<div class='row-fluid'>
-<div class='span12'>
-<div id='map' class='map'>
-</div>
-<input id='time' type='range' value='0' steps='1' />
-<div class='span4 offset4 pull-left'>
-<div id='info' class='alert alert-success'>
-&nbsp;
-</div>
-</div>
-</div>
-</div>
-</div></div>
+  <h2>Go Long Day0</h2>
+  <div class='ALL'>
+  <div class='container-fluid'>
+  <div class='row-fluid'>
+  <div class='span12'>
+  <div id='map' class='map'>
+  <div id='legende'>
+  </div>
+  </div>
+  <input id='time' type='range' value='0' steps='1' />
+  <div class='span4 offset4 pull-left'>
+  <div id='info' class='alert alert-success'>
+  &nbsp;
+  </div>
+  </div>
+  </div>
+  </div>
+  </div></div>
 <script>
 var Cuhg = new ol.geom.Circle(ol.proj.transform([-96.1544055599185, 29.2541653935156], 'EPSG:4326', 'EPSG:3857'), 5000);
 var T1087 = new ol.geom.Circle(ol.proj.transform([-96.1212508746672, 29.3261169695051], 'EPSG:4326', 'EPSG:3857'), 2000);
@@ -204,10 +210,43 @@ return styleArray;
 };
 var vectorSource = new ol.source.Vector();
 var igcUrls = [
-
+'Bob_Day0.igc',
+'Carl_Day0.igc',
+'Charles_Day0.igc',
+'Cory_Day0.igc',
+'Doug_Day0.igc',
+'Eduardo_Day0.igc',
+'German_Day0.igc',
+'Glen_Day0.igc',
+'Greg_Day0.igc',
+'James_Day0.igc',
+'Jim_Day0.igc',
+'Jonathan_Day0.igc',
+'Ken_Day0.igc',
+'Larry_Day0.igc',
+'Majo_Day0.igc',
+'Makbule_Day0.igc',
+'Matt_Day0.igc',
 'Mick_Day0.igc',
-
+'Mitch_Day0.igc',
+'Nate_Day0.igc',
+'Read_Day0.igc',
+'Rich_Day0.igc',
+'Richard_Day0.igc',
+'Robin_Day0.igc',
+'Sara_Day0.igc',
+'Soham_Day0.igc',
+'Sujata_Day0.igc',
+'Tavo_Day0.igc',
+'Tyson_Day0.igc',
 ];
+var vectorLineLayer = new ol.layer.Vector({
+source: vectorLine,
+style: new ol.style.Style({
+fill: new ol.style.Fill({ color: '#00FF00', weight: 4 }),
+stroke: new ol.style.Stroke({ color: '#ff1aff', width: 5 })
+})
+});
 function get(url, callback) {
 var client = new XMLHttpRequest();
 client.open('GET', url);
